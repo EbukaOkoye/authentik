@@ -1,26 +1,264 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f3f8fa;
+  --foreground: #0a2036;
+  --card: #ffffff;
+  --popover: #ffffff;
+  --muted: #e9f2f5;
+  --muted-foreground: #546673;
+  --border: #d4e1e5;
+  --input: #cbdbe0;
+  --ring: #208295;
+  --primary: #208295;
+  --primary-foreground: #f8fdfd;
+  --secondary: #ddeff3;
+  --secondary-foreground: #0c3654;
+  --accent: #cbf1ee;
+  --accent-foreground: #003a4b;
+  --destructive: #d02b31;
+  --destructive-foreground: #fcfcfc;
+  --success: #008760;
+  --success-soft: #cbf7e6;
+  --warning: #bb7400;
+  --warning-soft: #ffecc1;
+  --danger: #d02b31;
+  --danger-soft: #ffe6e3;
+  --info: #1f6a96;
+  --info-soft: #d8f0fc;
+  --neutral: #546673;
+  --neutral-soft: #e3e9ed;
+  --sidebar: #06203b;
+  --sidebar-foreground: #daebf1;
+  --sidebar-primary: #61bdb2;
+  --sidebar-accent: #0d3252;
+  --sidebar-border: #193550;
+  --sidebar-muted: #809dad;
+  --shadow-card: 0 1px 2px #0a20360d, 0 8px 24px -12px #0a203626;
+  --shadow-elevated: 0 20px 50px -20px #06203b59;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-navy: var(--sidebar);
+  --color-navy-foreground: var(--sidebar-foreground);
+  --color-navy-primary: var(--sidebar-primary);
+  --color-navy-accent: var(--sidebar-accent);
+  --color-navy-border: var(--sidebar-border);
+  --color-navy-muted: var(--sidebar-muted);
+  --font-sans: var(--font-dm-sans), "Segoe UI", sans-serif;
+  --font-heading: var(--font-space-grotesk), "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "SFMono-Regular", monospace;
+  --font-ios: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "Helvetica Neue", Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* iPhone 15 Pro natural titanium band */
+.iphone-titanium {
+  background: linear-gradient(
+    140deg,
+    #5d5b57 0%,
+    #b9b6af 9%,
+    #8a8781 22%,
+    #d8d5ce 41%,
+    #9a9791 58%,
+    #c7c4bd 76%,
+    #6a6863 92%,
+    #4f4d4a 100%
+  );
+}
+
+.iphone-button {
+  background: linear-gradient(90deg, #4f4d4a, #a9a69f 45%, #75736e);
+}
+
+/* iOS UIActivityIndicator: 8 spokes stepping round */
+@keyframes iosSpin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
+.ios-spinner {
+  animation: iosSpin 0.85s steps(8) infinite;
+}
+
+@keyframes kenBurns {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.animate-ken-burns {
+  animation: kenBurns 9s ease-out forwards;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-heading {
+  font-family: var(--font-space-grotesk), "Segoe UI", sans-serif;
+  letter-spacing: -0.025em;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--input);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+@keyframes techLineFlow {
+  0% {
+    stroke-dashoffset: 120;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -120;
+    opacity: 0;
+  }
+}
+
+@keyframes nodePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.45);
+    opacity: 0.95;
+  }
+}
+
+@keyframes scrollInfinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scanSweep {
+  0%,
+  100% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(100%);
+  }
+}
+
+.animate-scroll-infinite {
+  display: flex;
+  width: max-content;
+  animation: scrollInfinite 36s linear infinite;
+}
+
+.animate-scroll-infinite:hover {
+  animation-play-state: paused;
+}
+
+.animate-tech-line {
+  stroke-dasharray: 28 92;
+  animation: techLineFlow 24s linear infinite;
+}
+
+.animate-node-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nodePulse 4.5s ease-in-out infinite;
+}
+
+.animate-scan-sweep {
+  animation: scanSweep 2.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-scroll-infinite,
+  .animate-tech-line,
+  .animate-node-pulse,
+  .animate-scan-sweep,
+  .animate-ken-burns {
+    animation: none;
+  }
+
+  .ios-spinner {
+    animation-duration: 2.4s;
+  }
 }
