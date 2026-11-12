@@ -373,3 +373,11 @@ export const PRODUCT_CATEGORY_OPTIONS = [
   { value: "agrochemicals", label: "Agro-chemicals" },
   { value: "other", label: "Other consumer goods" },
 ] as const;
+
+export const APP_DOWNLOAD = {
+  heading: "Get the Huthentic app",
+  description:
+    "Scan QR codes on packs before you pay. Free on iPhone and Android.",
+  appleStoreUrl: "https://apps.apple.com",
+  playStoreUrl: "https://play.google.com/store",
+} as const;

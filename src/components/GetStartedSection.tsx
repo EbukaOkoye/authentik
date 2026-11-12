@@ -1,13 +1,16 @@
 "use client";
 
-import { CheckCircle2, Loader2, Mail } from "lucide-react";
+import { CheckCircle2, Loader2, Mail, Smartphone } from "lucide-react";
 
 import { useInquiryForm } from "@/hooks/use-inquiry-form";
 import {
+  APP_DOWNLOAD,
   BRAND,
   PRODUCT_CATEGORY_OPTIONS,
   SECTION_IDS,
 } from "@/lib/constants";
+
+import { AppStoreBadges } from "./AppStoreBadges";
 
 export const GetStartedSection = () => {
   const {
@@ -240,6 +243,25 @@ export const GetStartedSection = () => {
               )}
             </div>
           </div>
+        </div>
+
+        {/* Consumer mobile app download strip below the form */}
+        <div className="mt-12 flex flex-col items-start justify-between gap-6 rounded-xl border border-border bg-background p-6 sm:p-8 lg:flex-row lg:items-center">
+          <div className="flex items-start gap-4">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary">
+              <Smartphone className="h-5 w-5" />
+            </span>
+            <div>
+              <h3 className="font-heading text-xl font-bold tracking-tight text-foreground">
+                {APP_DOWNLOAD.heading}
+              </h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {APP_DOWNLOAD.description}
+              </p>
+            </div>
+          </div>
+
+          <AppStoreBadges />
         </div>
       </div>
     </section>
